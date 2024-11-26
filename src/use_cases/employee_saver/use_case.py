@@ -14,6 +14,7 @@ class EmployeeSaverUseCase:
                     first_name=employee_dto.first_name, last_name=employee_dto.last_name
                 )
             )
+            return ResponseDTO(executed=True, exception_occurred=False)
 
         except Exception:
             return ResponseDTO(executed=False, exception_occurred=True)

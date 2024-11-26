@@ -71,3 +71,18 @@ def test_saving_right_object(employee_dto, employee):
     employee_saver_use_case = EmployeeSaverUseCase(employee_saver_repository)
     employee_saver_use_case.execute(employee_dto)
     employee_saver_repository.save.assert_called_with(employee)
+
+
+def test_successful_saving_return_success_response():
+    employee_dto: EmployeeDTO = EmployeeDTO(
+        first_name="first name", last_name="last name"
+    )
+    employee_saver_repository: EmployeeSaverRepositoryInterface = MagicMock(
+        spec=EmployeeSaverRepositoryInterface
+    )
+    employee_saver_repository.save = MagicMock()
+
+    employee_saver_use_case = EmployeeSaverUseCase(employee_saver_repository)
+    actual_response = employee_saver_use_case.execute(employee_dto)
+    expected_response = ResponseDTO(executed=True, exception_occurred=False)
+    assert actual_response == expected_response
