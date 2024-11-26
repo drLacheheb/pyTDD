@@ -8,17 +8,21 @@ class EmployeeSaverUseCase:
         self.employee_saver_repository = employee_saver_repository
 
     def execute(self, employee_dto: EmployeeDTO) -> ResponseDTO:
-        def __map_dto_to_employee(__employee_dto):
-            return Employee(
-                first_name=__employee_dto.first_name, last_name=__employee_dto.last_name
-            )
+        def save_to_repository(employee_dto):
+            def __map_dto_to_employee(__employee_dto):
+                return Employee(
+                    first_name=__employee_dto.first_name,
+                    last_name=__employee_dto.last_name,
+                )
 
-        def __save(__employee: Employee):
-            self.employee_saver_repository.save(__employee)
+            def __save(__employee: Employee):
+                self.employee_saver_repository.save(__employee)
 
-        try:
             employee = __map_dto_to_employee(employee_dto)
             __save(employee)
+
+        try:
+            save_to_repository(employee_dto)
             return ResponseDTO(executed=True, exception_occurred=False)
 
         except Exception:
