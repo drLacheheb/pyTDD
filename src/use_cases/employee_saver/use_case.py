@@ -8,17 +8,17 @@ class EmployeeSaverUseCase:
         self.employee_saver_repository = employee_saver_repository
 
     def execute(self, employee_dto: EmployeeDTO) -> ResponseDTO:
-        def save_to_repository(employee_dto):
-            def __map_dto_to_employee(__employee_dto):
+        def save_to_repository(_employee_dto: EmployeeDTO) -> None:
+            def __map_dto_to_employee(__employee_dto: EmployeeDTO) -> Employee:
                 return Employee(
                     first_name=__employee_dto.first_name,
                     last_name=__employee_dto.last_name,
                 )
 
-            def __save(__employee: Employee):
+            def __save(__employee: Employee) -> None:
                 self.employee_saver_repository.save(__employee)
 
-            employee = __map_dto_to_employee(employee_dto)
+            employee: Employee = __map_dto_to_employee(_employee_dto)
             __save(employee)
 
         try:
