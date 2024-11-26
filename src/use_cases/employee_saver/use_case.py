@@ -11,6 +11,7 @@ class EmployeeSaverUseCase:
             self.employee_saver_repository.save(
                 Employee(first_name="first name", last_name="last name")
             )
+
         except Exception:
             return ResponseDTO(
                 executed=False,
