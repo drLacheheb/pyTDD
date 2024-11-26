@@ -41,9 +41,25 @@ def test_delegating_saving_to_repository():
     "employee_dto, employee",
     [
         (
-            EmployeeDTO(first_name="first name", last_name="last name"),
-            Employee(first_name="first name", last_name="last name"),
-        )
+            EmployeeDTO(first_name="first name 1", last_name="last name 1"),
+            Employee(first_name="first name 1", last_name="last name 1"),
+        ),
+        (
+            EmployeeDTO(first_name="first name 2", last_name="last name 2"),
+            Employee(first_name="first name 2", last_name="last name 2"),
+        ),
+        (
+            EmployeeDTO(first_name="first name 3", last_name="last name 3"),
+            Employee(first_name="first name 3", last_name="last name 3"),
+        ),
+        (
+            EmployeeDTO(first_name="first name 4", last_name="last name 4"),
+            Employee(first_name="first name 4", last_name="last name 4"),
+        ),
+        (
+            EmployeeDTO(first_name="first name 5", last_name="last name 5"),
+            Employee(first_name="first name 5", last_name="last name 5"),
+        ),
     ],
 )
 def test_saving_right_object(employee_dto, employee):
