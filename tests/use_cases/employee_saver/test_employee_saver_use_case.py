@@ -15,13 +15,15 @@ from tests.use_cases.employee_saver.mocks.employee_saver_repository import (
 
 
 def test_exception_response_on_repository_exception():
-    employee: EmployeeDTO = EmployeeDTO(first_name="first name", last_name="last name")
+    employee_dto: EmployeeDTO = EmployeeDTO(
+        first_name="first name", last_name="last name"
+    )
     employee_saver_repository: EmployeeSaverRepositoryInterface = (
         create_employee_saver_repository_with_exception_on_saving()
     )
 
     employee_saver_use_case = EmployeeSaverUseCase(employee_saver_repository)
-    actual_response = employee_saver_use_case.execute(employee)
+    actual_response = employee_saver_use_case.execute(employee_dto)
     expected_response = ResponseDTO(executed=False, exception_occurred=True)
     assert actual_response == expected_response
 
