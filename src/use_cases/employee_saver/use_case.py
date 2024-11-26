@@ -8,8 +8,8 @@ class EmployeeSaverUseCase:
         self.employee_saver_repository = employee_saver_repository
 
     def execute(self, employee_dto: EmployeeDTO) -> ResponseDTO:
-        def __save(employee):
-            self.employee_saver_repository.save(employee)
+        def __save(__employee: Employee):
+            self.employee_saver_repository.save(__employee)
 
         try:
             employee = Employee(
