@@ -8,12 +8,14 @@ class EmployeeSaverUseCase:
         self.employee_saver_repository = employee_saver_repository
 
     def execute(self, employee_dto: EmployeeDTO) -> ResponseDTO:
+        def __save(employee):
+            self.employee_saver_repository.save(employee)
+
         try:
-            self.employee_saver_repository.save(
-                Employee(
-                    first_name=employee_dto.first_name, last_name=employee_dto.last_name
-                )
+            employee = Employee(
+                first_name=employee_dto.first_name, last_name=employee_dto.last_name
             )
+            __save(employee)
             return ResponseDTO(executed=True, exception_occurred=False)
 
         except Exception:
